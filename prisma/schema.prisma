@@ -1,0 +1,209 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Gym {
+  id                  String    @id @default(cuid())
+  name                String
+  slug                String    @unique
+  logoUrl             String?   // base64 encoded
+  primaryColor        String    @default("#000000")
+  driveFolder         String?   // Google Drive folder ID (Legacy?)
+  aiTone              String    @default("motivational")
+  customInstructions  String?
+  proactiveEnabled    Boolean   @default(true)
+  celebratePRs        Boolean   @default(true)
+  recognizeStreaks    Boolean   @default(true)
+  absenceThreshold    Int       @default(5)
+  driveLastSynced     DateTime?
+  driveDocCount       Int       @default(0)
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+  
+  members             Member[]
+  workouts            Workout[]
+  knowledgeChunks     GymKnowledge[]
+  proactiveMessages   ProactiveMessage[]
+  aiUsages            AIUsage[]
+
+  // New RAG fields
+  driveFolderId       String?  // Google Drive folder with methodology docs
+  documents           GymDocument[]
+  embeddings          GymEmbedding[]
+}
+
+model Member {
+  id                String    @id @default(cuid())
+  email             String    @unique
+  name              String
+  password          String    // bcrypt hashed
+  gymId             String
+  gym               Gym       @relation(fields: [gymId], references: [id])
+  role              String    @default("member") // "admin" or "member"
+  createdAt         DateTime  @default(now())
+  lastActiveAt      DateTime  @default(now())
+  
+  results           Result[]
+  prs               PR[]
+  messages          Message[]
+  proactiveMessages ProactiveMessage[]
+  aiUsages          AIUsage[]
+  
+  currentStreak           Int       @default(0)
+  lastAbsenceNotification DateTime?
+
+  fistbumpsGiven    Fistbump[]
+  formAnalyses      FormAnalysis[]
+}
+
+model Workout {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  workoutType String   // "For Time", "AMRAP", "EMOM", "Weight", "Rounds", "Custom"
+  movements   String // newline-separated
+  date        DateTime @default(now())
+  gymId       String
+  gym         Gym      @relation(fields: [gymId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  results     Result[]
+}
+
+model Result {
+  id          String   @id @default(cuid())
+  memberId    String
+  member      Member   @relation(fields: [memberId], references: [id])
+  workoutId   String
+  workout     Workout  @relation(fields: [workoutId], references: [id])
+  result      String   // Format depends on workout type
+  notes       String?
+  loggedAt    DateTime @default(now())
+
+  fistbumps   Fistbump[]
+}
+
+model PR {
+  id          String   @id @default(cuid())
+  memberId    String
+  member      Member   @relation(fields: [memberId], references: [id])
+  movement    String
+  bestResult  String
+  unit        String?
+  achievedAt  DateTime
+  resultId    String?
+  createdAt   DateTime @default(now())
+  
+  @@unique([memberId, movement])
+}
+
+model Message {
+  id          String   @id @default(cuid())
+  memberId    String
+  member      Member   @relation(fields: [memberId], references: [id])
+  direction   String   // "incoming" or "outgoing"
+  messageText String
+  aiModel     String?  // "claude-sonnet-4.5" or "gemini-2.5-flash"
+  isComplex   Boolean  @default(false)
+  timestamp   DateTime @default(now())
+}
+
+model ProactiveMessage {
+  id          String   @id @default(cuid())
+  memberId    String
+  member      Member   @relation(fields: [memberId], references: [id])
+  gymId       String
+  gym         Gym      @relation(fields: [gymId], references: [id])
+  triggerType String   // "absence", "pr_celebration", "streak"
+  sentAt      DateTime @default(now())
+  responded   Boolean  @default(false)
+}
+
+model GymKnowledge {
+  id         Int      @id @default(autoincrement())
+  gymId      String
+  gym        Gym      @relation(fields: [gymId], references: [id])
+  content    String
+  embedding  Unsupported("vector(1536)")  // pgvector type (OpenAI)
+  sourceFile String
+  createdAt  DateTime @default(now())
+}
+
+model AIUsage {
+  id          String   @id @default(cuid())
+  gymId       String
+  gym         Gym      @relation(fields: [gymId], references: [id])
+  memberId    String?
+  member      Member?  @relation(fields: [memberId], references: [id])
+  feature     String   // "chat", "proactive_absence", "proactive_pr", "proactive_streak"
+  tokensUsed  Int
+  cost        Float    // Estimated cost in USD
+  model       String   // e.g. "gpt-4o-mini"
+  timestamp   DateTime @default(now())
+}
+
+model Fistbump {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  
+  memberId  String
+  member    Member   @relation(fields: [memberId], references: [id])
+  
+  resultId  String
+  result    Result   @relation(fields: [resultId], references: [id])
+
+  @@unique([memberId, resultId])
+}
+
+model GymDocument {
+  id              String   @id @default(cuid())
+  gymId           String
+  driveFileId     String
+  fileName        String
+  mimeType        String
+  content         String?  @db.Text
+  lastSyncedAt    DateTime @default(now())
+  createdAt       DateTime @default(now())
+
+  gym             Gym      @relation(fields: [gymId], references: [id])
+  chunks          GymEmbedding[]
+
+  @@unique([gymId, driveFileId])
+}
+
+model GymEmbedding {
+  id              String   @id @default(cuid())
+  gymId           String
+  documentId      String
+  chunkIndex      Int
+  chunkText       String   @db.Text
+  embedding       Unsupported("vector(768)") // Gemini embedding dimension
+  createdAt       DateTime @default(now())
+
+  gym             Gym         @relation(fields: [gymId], references: [id])
+  document        GymDocument @relation(fields: [documentId], references: [id])
+
+  @@index([gymId])
+}
+
+model FormAnalysis {
+  id              String   @id @default(cuid())
+  userId          String
+  exerciseType    String
+  videoKey        String
+  score           Int
+  summary         String
+  corrections     String[]
+  praise          String[]
+  rawResponse     String?  @db.Text
+  createdAt       DateTime @default(now())
+
+  user            Member   @relation(fields: [userId], references: [id])
+}
