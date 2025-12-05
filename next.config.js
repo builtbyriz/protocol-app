@@ -9,22 +9,27 @@ const nextConfig = {
     images: {
         unoptimized: true,
     },
-    webpack: (config, { isServer, nextRuntime }) => {
-        // Mark node modules as external so Webpack preserves the require()
-        // allowing Cloudflare's nodejs_compat to provide them
+    webpack: (config, { isServer }) => {
+        // Mark available node modules as external (provided by nodejs_compat)
         config.externals.push({
             'net': 'commonjs net',
             'tls': 'commonjs tls',
-            'dns': 'commonjs dns',
+            // dns is NOT external because we are shimming it
         });
+
+        // Add alias for dns to our shim
+        const path = require('path');
+        config.resolve.alias = {
+            ...config.resolve.alias,
+            'dns': path.resolve(__dirname, 'lib/shims/dns.js'),
+        };
 
         config.resolve.fallback = {
             ...config.resolve.fallback,
-            // Stub modules not needed at runtime or not available
+            // Stub modules not available
             fs: false,
             child_process: false,
             "pg-native": false,
-            // string_decoder should be handled by npm install, but stub path if needed
             path: false,
             stream: false,
             crypto: false,
