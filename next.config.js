@@ -12,8 +12,11 @@ const nextConfig = {
     webpack: (config, { isServer }) => {
         // Mark available node modules as external (provided by nodejs_compat)
         config.externals.push({
-            'net': 'commonjs net',
-            'tls': 'commonjs tls',
+            'net': 'node:net',
+            'tls': 'node:tls',
+            'fs': 'node:fs', // explicit node prefix might help if some dep tries to require it despite fallback
+            'path': 'node:path',
+            'stream': 'node:stream',
             // dns is NOT external because we are shimming it
         });
 
