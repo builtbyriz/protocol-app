@@ -5,6 +5,8 @@ import { Trophy, Medal } from "lucide-react"
 import { getWorkoutLeaderboard } from "@/app/actions/community"
 import { prisma } from "@/lib/db"
 
+export const runtime = 'edge';
+
 export default async function LeaderboardPage({ params }: { params: Promise<{ slug: string, workoutId: string }> }) {
     const { slug, workoutId } = await params
     const workout = await prisma.workout.findUnique({ where: { id: workoutId } })

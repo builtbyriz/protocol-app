@@ -1,5 +1,7 @@
 import { WorkoutForm } from "@/components/admin/workout-form"
 
+export const runtime = 'edge';
+
 export default async function NewWorkoutPage({
     params,
 }: {

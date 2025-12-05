@@ -5,6 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Trophy, TrendingUp, Calendar } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 
+export const runtime = 'edge';
+
 export default async function PRsPage({ params }: { params: Promise<{ slug: string }> }) {
     const session = await auth()
     const { slug } = await params

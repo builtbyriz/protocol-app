@@ -5,6 +5,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Plus, Calendar, Dumbbell, Users } from "lucide-react"
 import Link from "next/link"
 
+export const runtime = 'edge';
+
 export default async function WorkoutsPage({
     params,
 }: {

@@ -9,6 +9,8 @@ import { CommunityFeed } from "@/components/member/community-feed"
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid"
 import Link from "next/link"
 
+export const runtime = 'edge';
+
 export default async function MemberHome({ params }: { params: Promise<{ slug: string }> }) {
     const session = await auth()
     const { slug } = await params

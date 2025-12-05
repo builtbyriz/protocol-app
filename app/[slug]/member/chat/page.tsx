@@ -11,6 +11,8 @@ import { useEffect, useRef, useState, Suspense } from "react"
 import { useGym } from "@/components/gym-provider"
 import { useSearchParams } from "next/navigation"
 
+export const runtime = 'edge';
+
 function ChatInterface({ gymId }: { gymId: string }) {
     const searchParams = useSearchParams()
     const initialPrompt = searchParams.get('initialPrompt')

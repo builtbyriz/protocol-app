@@ -6,6 +6,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ArrowLeft, Calendar, Dumbbell, Mail, User } from "lucide-react"
 import Link from "next/link"
 
+export const runtime = 'edge';
+
 export default async function MemberDetailsPage({
     params,
 }: {

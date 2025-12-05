@@ -4,6 +4,7 @@ import { prisma } from '@/lib/db'
 import { analyzeMovement } from '@/lib/ai/movement-analyzer'
 import { uploadToR2, getSignedUrl } from '@/lib/storage/r2'
 
+export const runtime = 'edge';
 
 
 export async function POST(req: Request) {
