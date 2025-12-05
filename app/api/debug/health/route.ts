@@ -6,30 +6,41 @@ export const dynamic = 'force-dynamic'
 
 export async function GET() {
     try {
+        const startTime = Date.now()
+
         // Safe Environment Debugging
         const envKeys = Object.keys(process.env);
         const hasDbUrl = !!process.env.DATABASE_URL;
-        const dbUrlType = typeof process.env.DATABASE_URL;
-
-        // Don't log the full secret, just the start to verify it's not empty/malformed
         const dbUrlPreview = hasDbUrl ? `${process.env.DATABASE_URL?.substring(0, 15)}...` : 'undefined';
 
-        console.log('Health Check Env Debug:', { envKeys, hasDbUrl });
+        console.log('Health Check Analysis:', { hasDbUrl, driver: 'postgres.js' });
+
+        // Test Connection: Simple count
+        // This will FAIL if the connection string or driver is wrong
+        const count = await prisma.member.count()
+
+        const duration = Date.now() - startTime
 
         return NextResponse.json({
-            status: 'debug',
-            environment: {
-                keys: envKeys,
+            status: 'ok',
+            database: 'connected',
+            latency: `${duration}ms`,
+            memberCount: count,
+            env: {
                 hasDatabaseUrl: hasDbUrl,
-                databaseUrlType: dbUrlType,
                 preview: dbUrlPreview
             },
             runtime: process.env.NEXT_RUNTIME || 'unknown',
         })
     } catch (error) {
+        console.error('Diagnostic Error:', error)
         return NextResponse.json({
             status: 'error',
             message: error instanceof Error ? error.message : String(error),
+            env: {
+                hasDatabaseUrl: !!process.env.DATABASE_URL,
+            },
+            stack: error instanceof Error ? error.stack : undefined
         }, { status: 500 })
     }
 }
