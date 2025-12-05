@@ -9,6 +9,9 @@ const nextConfig = {
     images: {
         unoptimized: true,
     },
+    experimental: {
+        serverComponentsExternalPackages: ['pg'],
+    },
     webpack: (config, { isServer }) => {
         if (isServer) {
             config.resolve.fallback = {
