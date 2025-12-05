@@ -14,10 +14,8 @@ const nextConfig = {
         config.externals.push({
             'net': 'node:net',
             'tls': 'node:tls',
-            'fs': 'node:fs', // explicit node prefix might help if some dep tries to require it despite fallback
-            'path': 'node:path',
-            'stream': 'node:stream',
-            // dns is NOT external because we are shimming it
+            // fs, path, etc are NOT external because they are NOT in the runtime. 
+            // We must stub them below.
         });
 
         // Add alias for dns to our shim
@@ -29,12 +27,12 @@ const nextConfig = {
 
         config.resolve.fallback = {
             ...config.resolve.fallback,
-            // Stub modules not available
+            // Stub modules not available in Edge Runtime
             fs: false,
-            child_process: false,
-            "pg-native": false,
             path: false,
             stream: false,
+            child_process: false,
+            "pg-native": false,
             crypto: false,
         }
         return config
