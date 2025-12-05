@@ -5,7 +5,7 @@ import { NextResponse } from 'next/server'
 
 export const maxDuration = 30
 export const dynamic = 'force-dynamic'
-export const runtime = 'edge'
+
 
 export async function POST(req: Request, { params }: { params: Promise<{ gymId: string }> }) {
     try {

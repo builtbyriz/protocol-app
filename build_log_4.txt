@@ -1,0 +1,55 @@
+
+> protocol-web@0.1.0 build
+> next build
+
+  ▲ Next.js 14.2.15
+  - Environments: .env
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Skipping validation of types
+   Skipping linting
+   Collecting page data ...
+   Generating static pages (0/7) ...
+   Generating static pages (1/7) 
+   Generating static pages (3/7) 
+   Generating static pages (5/7) 
+ ✓ Generating static pages (7/7)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size     First Load JS
+┌ ƒ /                                       149 B          87.5 kB
+├ ○ /_not-found                             876 B          88.2 kB
+├ ƒ /[slug]/admin                           151 B          87.5 kB
+├ ƒ /[slug]/admin/dashboard                 7.95 kB         103 kB
+├ ƒ /[slug]/admin/knowledge                 4.49 kB        99.9 kB
+├ ƒ /[slug]/admin/members                   4.43 kB         107 kB
+├ ƒ /[slug]/admin/members/[memberId]        4.39 kB         139 kB
+├ ƒ /[slug]/admin/settings                  4.09 kB         132 kB
+├ ƒ /[slug]/admin/workouts                  2.74 kB         105 kB
+├ ƒ /[slug]/admin/workouts/new              4.42 kB         135 kB
+├ ƒ /[slug]/member                          12.5 kB         168 kB
+├ ƒ /[slug]/member/analysis                 5.7 kB          106 kB
+├ ƒ /[slug]/member/chat                     5.57 kB         139 kB
+├ ƒ /[slug]/member/history                  105 kB          201 kB
+├ ƒ /[slug]/member/leaderboard/[workoutId]  3 kB           98.5 kB
+├ ƒ /[slug]/member/log-workout/[id]         2.8 kB         98.3 kB
+├ ƒ /[slug]/member/profile                  3.58 kB         103 kB
+├ ƒ /[slug]/member/prs                      151 B          87.5 kB
+├ ƒ /api/analyze-form                       0 B                0 B
+├ ƒ /api/auth/[...nextauth]                 0 B                0 B
+├ ƒ /api/chat/[gymId]                       0 B                0 B
+├ ƒ /api/cron/absence                       0 B                0 B
+├ ƒ /api/cron/sync-drive                    0 B                0 B
+├ ƒ /api/debug/health                       0 B                0 B
+└ ○ /login                                  4.14 kB         103 kB
++ First Load JS shared by all               87.4 kB
+  ├ chunks/117-2c353361b3ebff30.js          31.8 kB
+  ├ chunks/fd9d1056-fca211829e141b65.js     53.6 kB
+  └ other shared chunks (total)             1.97 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

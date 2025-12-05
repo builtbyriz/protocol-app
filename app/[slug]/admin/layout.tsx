@@ -2,7 +2,7 @@ import { auth } from "@/lib/auth"
 import { redirect } from "next/navigation"
 import Link from "next/link"
 
-export const runtime = 'edge'
+
 
 export default async function AdminLayout({
     children,

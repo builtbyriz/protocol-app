@@ -1,0 +1,82 @@
+
+> protocol-web@0.1.0 build
+> next build
+
+  ▲ Next.js 14.2.15
+  - Environments: .env
+
+   Creating an optimized production build ...
+Failed to compile.
+
+./node_modules/pg-connection-string/index.js:81:1
+Module not found: Can't resolve 'fs'
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./node_modules/pg/lib/connection-parameters.js
+./node_modules/pg/lib/client.js
+./node_modules/pg/lib/index.js
+./node_modules/pg/esm/index.mjs
+./lib/db.ts
+./app/actions/admin.ts
+./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cirfan%5C%5COneDrive%5C%5CDocuments%5C%5CProtocol%20App%5C%5Capp%5C%5Cactions%5C%5Cadmin.ts%22%2C%5B%22getMembers%22%2C%22getMembersAtRisk%22%2C%22updateGym%22%2C%22createWorkout%22%2C%22updateMemberRole%22%2C%22getAdminStats%22%2C%22getRecentActivity%22%2C%22getMemberDetails%22%2C%22getWorkouts%22%5D%5D%5D&__client_imported__=true!
+
+./node_modules/pg-connection-string/index.js:81:1
+Module not found: Can't resolve 'fs'
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./node_modules/pg/lib/connection-parameters.js
+./node_modules/pg/lib/client.js
+./node_modules/pg/lib/index.js
+./node_modules/pg/esm/index.mjs
+./lib/db.ts
+./app/api/analyze-form/route.ts
+./node_modules/next/dist/build/webpack/loaders/next-edge-app-route-loader/index.js?absolutePagePath=private-next-app-dir%2Fapi%2Fanalyze-form%2Froute.ts&page=%2Fapi%2Fanalyze-form%2Froute&appDirLoader=bmV4dC1hcHAtbG9hZGVyP25hbWU9YXBwJTJGYXBpJTJGYW5hbHl6ZS1mb3JtJTJGcm91dGUmcGFnZT0lMkZhcGklMkZhbmFseXplLWZvcm0lMkZyb3V0ZSZwYWdlUGF0aD1wcml2YXRlLW5leHQtYXBwLWRpciUyRmFwaSUyRmFuYWx5emUtZm9ybSUyRnJvdXRlLnRzJmFwcERpcj1DJTNBJTVDVXNlcnMlNUNpcmZhbiU1Q09uZURyaXZlJTVDRG9jdW1lbnRzJTVDUHJvdG9jb2wlMjBBcHAlNUNhcHAmYXBwUGF0aHM9JTJGYXBpJTJGYW5hbHl6ZS1mb3JtJTJGcm91dGUmcGFnZUV4dGVuc2lvbnM9dHN4JnBhZ2VFeHRlbnNpb25zPXRzJnBhZ2VFeHRlbnNpb25zPWpzeCZwYWdlRXh0ZW5zaW9ucz1qcyZiYXNlUGF0aD0mYXNzZXRQcmVmaXg9Jm5leHRDb25maWdPdXRwdXQ9JnByZWZlcnJlZFJlZ2lvbj0mbWlkZGxld2FyZUNvbmZpZz1lMzAlM0Qh&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!
+
+./node_modules/pgpass/lib/helper.js:3:1
+Module not found: Can't resolve 'path'
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./node_modules/pgpass/lib/index.js
+./node_modules/pg/lib/client.js
+./node_modules/pg/lib/index.js
+./node_modules/pg/esm/index.mjs
+./lib/db.ts
+./app/actions/admin.ts
+./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cirfan%5C%5COneDrive%5C%5CDocuments%5C%5CProtocol%20App%5C%5Capp%5C%5Cactions%5C%5Cadmin.ts%22%2C%5B%22getMembers%22%2C%22getMembersAtRisk%22%2C%22updateGym%22%2C%22createWorkout%22%2C%22updateMemberRole%22%2C%22getAdminStats%22%2C%22getRecentActivity%22%2C%22getMemberDetails%22%2C%22getWorkouts%22%5D%5D%5D&__client_imported__=true!
+
+./node_modules/pgpass/lib/helper.js:4:1
+Module not found: Can't resolve 'stream'
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./node_modules/pgpass/lib/index.js
+./node_modules/pg/lib/client.js
+./node_modules/pg/lib/index.js
+./node_modules/pg/esm/index.mjs
+./lib/db.ts
+./app/actions/admin.ts
+./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cirfan%5C%5COneDrive%5C%5CDocuments%5C%5CProtocol%20App%5C%5Capp%5C%5Cactions%5C%5Cadmin.ts%22%2C%5B%22getMembers%22%2C%22getMembersAtRisk%22%2C%22updateGym%22%2C%22createWorkout%22%2C%22updateMemberRole%22%2C%22getAdminStats%22%2C%22getRecentActivity%22%2C%22getMemberDetails%22%2C%22getWorkouts%22%5D%5D%5D&__client_imported__=true!
+
+./node_modules/pgpass/lib/helper.js:3:1
+Module not found: Can't resolve 'path'
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./node_modules/pgpass/lib/index.js
+./node_modules/pg/lib/client.js
+./node_modules/pg/lib/index.js
+./node_modules/pg/esm/index.mjs
+./lib/db.ts
+./app/api/analyze-form/route.ts
+./node_modules/next/dist/build/webpack/loaders/next-edge-app-route-loader/index.js?absolutePagePath=private-next-app-dir%2Fapi%2Fanalyze-form%2Froute.ts&page=%2Fapi%2Fanalyze-form%2Froute&appDirLoader=bmV4dC1hcHAtbG9hZGVyP25hbWU9YXBwJTJGYXBpJTJGYW5hbHl6ZS1mb3JtJTJGcm91dGUmcGFnZT0lMkZhcGklMkZhbmFseXplLWZvcm0lMkZyb3V0ZSZwYWdlUGF0aD1wcml2YXRlLW5leHQtYXBwLWRpciUyRmFwaSUyRmFuYWx5emUtZm9ybSUyRnJvdXRlLnRzJmFwcERpcj1DJTNBJTVDVXNlcnMlNUNpcmZhbiU1Q09uZURyaXZlJTVDRG9jdW1lbnRzJTVDUHJvdG9jb2wlMjBBcHAlNUNhcHAmYXBwUGF0aHM9JTJGYXBpJTJGYW5hbHl6ZS1mb3JtJTJGcm91dGUmcGFnZUV4dGVuc2lvbnM9dHN4JnBhZ2VFeHRlbnNpb25zPXRzJnBhZ2VFeHRlbnNpb25zPWpzeCZwYWdlRXh0ZW5zaW9ucz1qcyZiYXNlUGF0aD0mYXNzZXRQcmVmaXg9Jm5leHRDb25maWdPdXRwdXQ9JnByZWZlcnJlZFJlZ2lvbj0mbWlkZGxld2FyZUNvbmZpZz1lMzAlM0Qh&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!
+
+
+> Build failed because of webpack errors

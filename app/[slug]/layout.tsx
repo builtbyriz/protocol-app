@@ -2,7 +2,7 @@ import { GymProvider } from "@/components/gym-provider"
 import { prisma } from "@/lib/db"
 import { notFound } from "next/navigation"
 
-export const runtime = 'edge'
+
 
 export default async function GymLayout({
     children,

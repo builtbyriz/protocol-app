@@ -6,7 +6,7 @@ import { Home, History, Trophy, MessageSquare, User, Eye } from "lucide-react"
 import { ConfettiCelebration } from "@/components/confetti-celebration"
 import { OnboardingTour } from "@/components/member/onboarding-tour"
 
-export const runtime = 'edge'
+
 
 export default async function MemberLayout({
     children,
