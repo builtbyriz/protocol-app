@@ -11,7 +11,6 @@ import { notFound, redirect } from "next/navigation"
 import { getRecommendedWeights } from "@/app/actions/workouts"
 import { Sparkles } from "lucide-react"
 
-export const runtime = 'edge';
 
 export default async function LogWorkoutPage({
     params

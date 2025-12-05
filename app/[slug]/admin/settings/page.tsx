@@ -1,6 +1,5 @@
 import { SettingsForm } from "@/components/admin/settings-form"
 
-export const runtime = 'edge';
 
 export default async function SettingsPage({
     params,

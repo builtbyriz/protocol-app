@@ -2,7 +2,6 @@ import { syncGymDocuments } from '@/lib/rag/gym-knowledge'
 import { prisma } from '@/lib/db'
 import { NextResponse } from 'next/server'
 
-export const runtime = 'edge';
 export const dynamic = 'force-dynamic'
 
 

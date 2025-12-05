@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button'
 import { Loader2, Sparkles } from 'lucide-react'
 import { toast } from 'sonner'
 
-export const runtime = 'edge';
 
 export default function AnalysisPage() {
     const [file, setFile] = useState<File | null>(null)

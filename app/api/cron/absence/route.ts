@@ -2,7 +2,6 @@ import { prisma } from '@/lib/db'
 import { generateProactiveMessage } from '@/lib/proactive'
 import { NextResponse } from 'next/server'
 
-export const runtime = 'edge';
 export const dynamic = 'force-dynamic'
 
 

@@ -4,7 +4,6 @@ import { askGymCoach } from '@/lib/ai/gym-coach'
 import { NextResponse } from 'next/server'
 
 export const maxDuration = 30
-export const runtime = 'edge';
 export const dynamic = 'force-dynamic'
 
 

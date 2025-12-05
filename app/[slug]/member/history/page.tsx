@@ -6,7 +6,6 @@ import { Calendar, Trophy } from "lucide-react"
 
 import { VolumeChart } from "@/components/member/analytics/volume-chart"
 
-export const runtime = 'edge';
 
 export default async function HistoryPage({ params }: { params: Promise<{ slug: string }> }) {
     const session = await auth()

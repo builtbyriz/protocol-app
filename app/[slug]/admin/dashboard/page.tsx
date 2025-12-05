@@ -4,7 +4,6 @@ import { getAdminStats, getRecentActivity, getMembersAtRisk } from "@/app/action
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
-export const runtime = 'edge';
 
 export default async function AdminDashboard({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params

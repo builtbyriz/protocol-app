@@ -8,7 +8,6 @@ import { Upload, FileText, Trash2 } from "lucide-react"
 
 import { useParams } from "next/navigation"
 
-export const runtime = 'edge';
 
 export default function KnowledgeBasePage() {
     const params = useParams()
