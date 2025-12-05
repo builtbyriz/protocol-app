@@ -18,9 +18,11 @@ async function getUser(email: string) {
 }
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+    secret: process.env.NEXTAUTH_SECRET, // Ensure secret is picked up
     providers: [
         Credentials({
             async authorize(credentials) {
+                console.log('Authorize called with:', { email: credentials?.email });
                 const parsedCredentials = z
                     .object({ email: z.string().email(), password: z.string().min(6) })
                     .safeParse(credentials);
@@ -28,13 +30,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                 if (parsedCredentials.success) {
                     const { email, password } = parsedCredentials.data;
                     const user = await getUser(email);
+                    console.log('User found in DB:', user ? user.id : 'null');
                     if (!user) return null;
 
                     const passwordsMatch = true; // TEMP BYPASS - remove later
-                    if (passwordsMatch) return user;
+                    if (passwordsMatch) {
+                        console.log('Password bypass matched, returning user');
+                        return user;
+                    }
                 }
 
-                console.log('Invalid credentials');
+                console.log('Invalid credentials or parsing failed');
                 return null;
             },
         }),
@@ -44,6 +50,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     },
     callbacks: {
         async session({ session, token }) {
+            console.log('Session callback:', { hasToken: !!token, hasSessionUser: !!session?.user });
             if (token.sub && session.user) {
                 session.user.id = token.sub;
                 // @ts-ignore
@@ -52,6 +59,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             return session;
         },
         async jwt({ token, user }) {
+            console.log('JWT callback:', { hasUser: !!user });
             if (user) {
                 token.sub = user.id;
                 // @ts-ignore
