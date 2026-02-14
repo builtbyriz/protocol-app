@@ -1,0 +1,66 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/gsd-check-update.js"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/react-app/quality-check.js"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "node .claude/hooks/gsd-statusline.js"
+  },
+  "extraKnownMarketplaces": {
+    "trailofbits-skills": {
+      "source": {
+        "source": "directory",
+        "path": ".claude/plugins/trailofbits-skills"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "ask-questions-if-underspecified@trailofbits-skills": true,
+    "audit-context-building@trailofbits-skills": true,
+    "building-secure-contracts@trailofbits-skills": true,
+    "burpsuite-project-parser@trailofbits-skills": true,
+    "claude-in-chrome-troubleshooting@trailofbits-skills": true,
+    "constant-time-analysis@trailofbits-skills": true,
+    "culture-index@trailofbits-skills": true,
+    "debug-buttercup@trailofbits-skills": true,
+    "devcontainer-setup@trailofbits-skills": true,
+    "differential-review@trailofbits-skills": true,
+    "dwarf-expert@trailofbits-skills": true,
+    "entry-point-analyzer@trailofbits-skills": true,
+    "firebase-apk-scanner@trailofbits-skills": true,
+    "gh-cli@trailofbits-skills": true,
+    "git-cleanup@trailofbits-skills": true,
+    "insecure-defaults@trailofbits-skills": true,
+    "modern-python@trailofbits-skills": true,
+    "property-based-testing@trailofbits-skills": true,
+    "second-opinion@trailofbits-skills": true,
+    "semgrep-rule-creator@trailofbits-skills": true,
+    "semgrep-rule-variant-creator@trailofbits-skills": true,
+    "sharp-edges@trailofbits-skills": true,
+    "spec-to-code-compliance@trailofbits-skills": true,
+    "static-analysis@trailofbits-skills": true,
+    "testing-handbook-skills@trailofbits-skills": true,
+    "variant-analysis@trailofbits-skills": true,
+    "yara-authoring@trailofbits-skills": true
+  }
+}
