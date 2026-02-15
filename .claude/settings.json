@@ -32,6 +32,18 @@
         "source": "directory",
         "path": ".claude/plugins/trailofbits-skills"
       }
+    },
+    "obsidian-skills": {
+      "source": {
+        "source": "directory",
+        "path": ".claude/plugins/obsidian-skills"
+      }
+    },
+    "superpowers-marketplace": {
+      "source": {
+        "source": "directory",
+        "path": ".claude/plugins/superpowers-marketplace"
+      }
     }
   },
   "enabledPlugins": {
@@ -61,6 +73,8 @@
     "static-analysis@trailofbits-skills": true,
     "testing-handbook-skills@trailofbits-skills": true,
     "variant-analysis@trailofbits-skills": true,
-    "yara-authoring@trailofbits-skills": true
+    "yara-authoring@trailofbits-skills": true,
+    "obsidian@obsidian-skills": true,
+    "superpowers@superpowers-marketplace": true
   }
 }
